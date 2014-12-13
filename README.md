@@ -1,4 +1,4 @@
 Coding
 ======
 
-Code beaucty
+Code beauty
