@@ -4,7 +4,7 @@
 #include <linux/sched.h>
 
 MODULE_LICENSE("GPL");
-static int print_pid(void)
+static int __init print_pid(void)
 {
 	struct task_struct *task,*p;
 	struct list_head *pos;
@@ -23,9 +23,9 @@ static int print_pid(void)
 	printk("the number of process is:%d\n", count);
 	return 0;
 }
-static void print_exit()
+static void __exit print_exit(void)
 {
-	printk(KERN_ALERT"End!");
+	printk("\nEnd!\n");
 }
 
 module_init(print_pid);
@@ -33,8 +33,8 @@ module_init(print_pid);
 module_exit(print_exit);
 
 
-MODULE_AUTHOR("edsionte Wu");
-MODULE_DESCRIPTION("This is a simple example!\n");
+MODULE_AUTHOR("Mwumli");
+MODULE_DESCRIPTION("Print all process!\n");
 
-MODULE_ALIAS("A simplest example");
+MODULE_ALIAS("print pid");
 
