@@ -1,4 +1,4 @@
-obj-m += print_pid.o
+obj-m += paramirq.o
 #generate the path
 CURRENT_PATH:=$(shell pwd)
 #the current kernel version number
