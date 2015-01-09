@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link type="text/css" href="style.css" rel="stylesheet"> 
+<title>倒计时</title>
+<script type="text/javascript">
+var timer;
+function change(second)
+{
+	
+	var str="";
+	second--;
+	if(Math.floor(second/60) > 0) {
+	  str = Math.floor(second/60);
+	  document.getElementById("h").innerHTML=str;
+	  str = ":";
+	  document.getElementById("m").innerHTML=str;
+	} else {
+		var h=document.getElementById("h");
+		h.style.display="none";
+		var m=document.getElementById("m");	
+		m.style.display="none";
+		var s=document.getElementById("s");	
+		s.style.cssFloat="none";
+		s.style.color="red";
+		s.style.fontSize="25em";
+		s.style.marginLeft="0.4em";
+		s.style.textAlign="right";
+
+	}
+	
+	str = second%60;
+
+	if(second>-1)
+	{
+		if(str < 10 && second >= 60)
+		  str = "0"+str;
+		document.getElementById("s").innerHTML=str;
+		timer = setTimeout(function() {change(second);},1000);//调用自身实现
+	}
+	else
+	{
+		document.getElementById("top-nav").style.paddingLeft="0";
+		var h=document.getElementById("h");
+		h.style.display="inline";
+		h.innerHTML="时";
+		h.style.color="white";
+		h.style.marginRight="0";
+
+		var m=document.getElementById("m");	
+		m.style.display="inline";
+		m.innerHTML="间";
+		m.style.color="white";
+		m.style.marginLeft="0";
+
+		var s=document.getElementById("s");	
+		s.style.display="inline";
+		s.style.cssFloat="left";
+		s.style.color="white";
+		s.innerHTML="到!";
+		s.style.marginLeft="0";
+		s.style.fontSize="19em";
+		clearTimeout(timer);
+	}
+
+}
+function time(second) {
+
+	timer = setTimeout(function() { change(second);},1000);
+
+	document.getElementById("start_button").style.display="none";
+}
+</script>
+</head>
+<body>
+<div id="header">
+	<ul id="top-nav">
+		<li id="h">
+		5
+		</li>
+		<li id="m">
+		:
+		</li >
+		<li id="s">
+		00
+		</li>
+	</ul>
+</div>
+<div class="clear"></div>
+<div id="start">
+<input type="button" id="start_button"  value="开始计时" onclick="time(300)"> 
+</div>
+</body>
+</html>
+
